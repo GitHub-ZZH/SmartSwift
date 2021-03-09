@@ -68,10 +68,15 @@ extension SignInViewController {
     }
 }
 
-// Action
+// MARK: - Action
 extension SignInViewController {
     @objc func buttonSignInClicked() {
         print("点击登录")
+        
+        let httpTool = HttpTools()
+        httpTool.get(url: "www.baidu.com")
+        
+        HttpTools.shareInstance.get(url: "")
         
         guard accountField.text?.isEmpty == false else {
             print("account is 0")

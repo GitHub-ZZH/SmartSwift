@@ -19,8 +19,7 @@ class HttpTools: NSObject {
     
     func signInWithAccountAndPassword(_ account: NSString, _ password: NSString) {
         
-//        let frame = CGRect.
-        
+        self.get(url: "www.baidu.com")
     }
     
     func getSignUpCode(account: NSString) -> NSString {
@@ -34,15 +33,20 @@ class HttpTools: NSObject {
         aa()
     }
     
-    
-//        aa()
-//        )
-    
-//    func get(url: String) -> (()->()) {
-//
-//
+    func get(url: String) -> () {
+
+//        NSMutableURLRequest *request = [self formatRequestWithURL:url];
+//        [request setHTTPMethod:@"GET"];
+//        [self sendRequest:request];
+        guard let urlStr = URL(string: url) else {
+            return
+        }
+        var request = URLRequest(url: urlStr);
+        request.httpMethod = "GET"
+        sendRequest(request: request)
+
 //        return aa()
-//    }
+    }
     
     func post(url: String, reponse callback: (()->())) -> Void {
         
@@ -86,5 +90,17 @@ class HttpTools: NSObject {
 }
 
 extension HttpTools: URLSessionDelegate {
+    
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        print("============")
+    }
+    
+    func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
+        
+    }
+    
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        
+    }
     
 }
